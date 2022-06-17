@@ -37,4 +37,5 @@ public class AccidentControl {
         accidentService.update(accident);
         return "redirect:/";
     }
+
 }
