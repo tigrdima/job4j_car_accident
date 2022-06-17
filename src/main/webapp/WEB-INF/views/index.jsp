@@ -19,13 +19,38 @@
 </head>
 <body>
 <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#" >Нарушения</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" >Все нарушения</a>
+            </div>
+        </div>
+    </nav>
 <div class="row">
     <table class="table" style="width: 100%">
+        <thead>
         <tr>
-        <c:forEach var="string" items="${strings}">
-            <td><c:out value="${string}" /></td>
+            <th scope="col">iD</th>
+            <th scope="col">Название нарушения</th>
+            <th scope="col">Описание нарушения</th>
+            <th scope="col">Адрес нарушения</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach var="accident" items="${accidents}">
+           <tr>
+            <td><c:out value="${accident.id}" /></td>
+            <td><c:out value="${accident.name}" /></td>
+            <td><c:out value="${accident.text}" /></td>
+            <td><c:out value="${accident.address}" /></td>
+           </tr>
         </c:forEach>
-    </tr>
+        </tbody>
     </table>
 </div>
 </div>
