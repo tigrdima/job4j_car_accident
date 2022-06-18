@@ -3,10 +3,12 @@ package ru.job4j.accident.service;
 import org.springframework.stereotype.Service;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
+import ru.job4j.accident.model.Rule;
 import ru.job4j.accident.store.AccidentMemStore;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class AccidentService {
@@ -20,16 +22,16 @@ public class AccidentService {
         return accidentMemStore.getAll();
     }
 
-    public void save(Accident accident, int accidentTypeId) {
-        accidentMemStore.save(accident, accidentTypeId);
+    public void save(Accident accident, int accidentTypeId, String[] ruleIds) {
+        accidentMemStore.save(accident, accidentTypeId, ruleIds);
     }
 
     public Accident findById(int id) {
         return accidentMemStore.fidById(id);
     }
 
-    public void update(Accident accident, int accidentTypeId) {
-        accidentMemStore.update(accident, accidentTypeId);
+    public void update(Accident accident, int accidentTypeId, String[] ruleIds) {
+        accidentMemStore.update(accident, accidentTypeId, ruleIds);
     }
 
     public List<AccidentType> getAllTypes() {
@@ -40,4 +42,11 @@ public class AccidentService {
         return accidentMemStore.findByIdType(id);
     }
 
+    public Rule findByIdRule(int id) {
+        return accidentMemStore.findByIdRule(id);
+    }
+
+    public Set<Rule> getAllRules() {
+        return accidentMemStore.getAllRules();
+    }
 }

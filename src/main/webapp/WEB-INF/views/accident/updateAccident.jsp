@@ -51,6 +51,17 @@
                     </td>
                     </tr>
                         <tr>
+                            <td><h5><label>Статьи нарушения:</label></h5></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select name="ruleIds" multiple>
+                                    <c:forEach var="rule" items="${rules}">
+                                        <option value="${rule.id}">${rule.name}</option>
+                                    </c:forEach>
+                                </select>
+                        </tr>
+                        <tr>
                             <td>
                                 <h5><label>Адресс нарушения:</label></h5>
                             </td>

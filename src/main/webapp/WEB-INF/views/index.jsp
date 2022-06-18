@@ -40,6 +40,7 @@
                 <th scope="col">iD</th>
                 <th scope="col">Название нарушения</th>
                 <th scope="col">Тип нарушения</th>
+                <th scope="col">Статьи нарушения</th>
                 <th scope="col">Описание нарушения</th>
                 <th scope="col">Адрес нарушения</th>
             </tr>
@@ -55,6 +56,7 @@
                         </a>
                     </td>
                     <td><c:out value="${accident.accidentType}"/></td>
+                    <td><c:out value="${accident.rules}"/></td>
                     <td><c:out value="${accident.text}"/></td>
                     <td><c:out value="${accident.address}"/></td>
                 </tr>
