@@ -31,12 +31,25 @@
                             <td>
                                 <h5><label>Название нарушения:</label></h5>
                             </td>
+                        </tr>
                         <tr>
                             <td>${accident.name}</td>
                         </tr>
                         <tr>
                             <td><input type='hidden' name='name' value="${accident.name}"></td>
                         </tr>
+                        <tr>
+                            <td>
+                                <h5><label>Тип нарушения:</label></h5>
+                            </td>
+                       <tr> <td>
+                        <select name="accidentType.id">
+                            <c:forEach var="accidentType" items="${accidentTypes}" >
+                                <option value="${accidentType.id}">${accidentType.name}</option>
+                            </c:forEach>
+                        </select>
+                    </td>
+                    </tr>
                         <tr>
                             <td>
                                 <h5><label>Адресс нарушения:</label></h5>

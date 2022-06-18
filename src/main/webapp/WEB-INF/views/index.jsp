@@ -3,6 +3,7 @@
 <html>
 <head>
     <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
@@ -38,6 +39,7 @@
             <tr>
                 <th scope="col">iD</th>
                 <th scope="col">Название нарушения</th>
+                <th scope="col">Тип нарушения</th>
                 <th scope="col">Описание нарушения</th>
                 <th scope="col">Адрес нарушения</th>
             </tr>
@@ -47,10 +49,12 @@
                 <tr>
                     <td><c:out value="${accident.id}"/></td>
                     <td>
-                        <a href="<c:url value='/formUpdate?id=${accident.id}'/>">
-                            <c:out value="${accident.name}"/>
+                        <c:out value="${accident.name}"/>
+                        <a href="<c:url value='/formUpdate?id=${accident.id}'/>" title="Редактировать">
+                            <i class="fa fa-edit"></i>
                         </a>
                     </td>
+                    <td><c:out value="${accident.accidentType}"/></td>
                     <td><c:out value="${accident.text}"/></td>
                     <td><c:out value="${accident.address}"/></td>
                 </tr>

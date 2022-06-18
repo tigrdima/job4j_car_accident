@@ -29,6 +29,15 @@
                             <td><input type="text" name="name"></td>
                         </tr>
                         <tr>
+                            <td>Тип нарушения:</td>
+                           <td> <select name="accidentType.id">
+                                <c:forEach var="accidentType" items="${accidentTypes}" >
+                                    <option value="${accidentType.id}">${accidentType.name}</option>
+                                </c:forEach>
+                            </select>
+                        </td>
+                        </tr>
+                        <tr>
                             <td>Описание нарушения:</td>
                             <td><input type="text" name="text"></td>
                         </tr>
