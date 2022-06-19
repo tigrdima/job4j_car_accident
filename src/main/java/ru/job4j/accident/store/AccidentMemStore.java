@@ -12,24 +12,24 @@ import java.util.stream.Collectors;
 @Repository
 public class AccidentMemStore {
     private final Map<Integer, Accident> accidents = new HashMap<>();
-    private final List<AccidentType> accidentTypes = new ArrayList<>();
+    private final Map<Integer, AccidentType> accidentTypes = new HashMap<>();
     private final List<Rule> rules = new ArrayList<>();
     private final AtomicInteger ids = new AtomicInteger(3);
 
     public AccidentMemStore() {
-        accidentTypes.add(new AccidentType(1, "Две машины"));
-        accidentTypes.add(new AccidentType(2, "Машина и человек"));
-        accidentTypes.add(new AccidentType(3, "Машина и велосипед"));
+        accidentTypes.put(1, new AccidentType(1, "Две машины"));
+        accidentTypes.put(2, new AccidentType(2, "Машина и человек"));
+        accidentTypes.put(3, new AccidentType(3, "Машина и велосипед"));
 
         rules.add(new Rule(1, "Статья 1"));
         rules.add(new Rule(2, "Статья 2"));
         rules.add(new Rule(3, "Статья 3"));
 
-        accidents.put(1, new Accident(1, "Accident1", "aaaaaa", "Street1", findByIdType(1),
+        accidents.put(1, new Accident(1, "Accident1", "aaaaaa", "Street1", accidentTypes.get(1),
                 new HashSet<>(List.of(rules.get(0)))));
-        accidents.put(2, new Accident(2, "Accident2", "aaaaaa", "Street2", findByIdType(2),
+        accidents.put(2, new Accident(2, "Accident2", "aaaaaa", "Street2", accidentTypes.get(2),
                 new HashSet<>(List.of(rules.get(0), rules.get(1)))));
-        accidents.put(3, new Accident(3, "Accident3", "aaaaaa", "Street3", findByIdType(3),
+        accidents.put(3, new Accident(3, "Accident3", "aaaaaa", "Street3", accidentTypes.get(3),
                 new HashSet<>(List.of(rules.get(0), rules.get(1), rules.get(2)))));
     }
 
@@ -54,7 +54,7 @@ public class AccidentMemStore {
 
     public void update(Accident accident, int accidentTypeId, String[] ruleIds) {
         accident.setText(accident.getText());
-        accident.setAccidentType(findByIdType(accidentTypeId));
+        accident.setAccidentType(accidentTypes.get(accidentTypeId));
         accident.setRules(
                 Arrays.stream(ruleIds)
                         .map(ruleId -> findByIdRule(Integer.parseInt(ruleId)))
@@ -62,18 +62,12 @@ public class AccidentMemStore {
         accidents.replace(accident.getId(), accident);
     }
 
-    public List<AccidentType> getAllTypes() {
-        return new ArrayList<>(accidentTypes);
+    public Collection<AccidentType> getAllTypes() {
+        return accidentTypes.values();
     }
 
     public AccidentType findByIdType(int id) {
-        AccidentType rsl = null;
-        for (AccidentType at : accidentTypes) {
-            if (at.getId() == id) {
-                rsl = at;
-            }
-        }
-        return rsl;
+        return accidentTypes.get(id);
     }
 
     public Set<Rule> getAllRules() {

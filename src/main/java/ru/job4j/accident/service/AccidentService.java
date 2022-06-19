@@ -34,7 +34,7 @@ public class AccidentService {
         accidentMemStore.update(accident, accidentTypeId, ruleIds);
     }
 
-    public List<AccidentType> getAllTypes() {
+    public Collection<AccidentType> getAllTypes() {
         return accidentMemStore.getAllTypes();
     }
 
