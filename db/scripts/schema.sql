@@ -19,6 +19,7 @@ CREATE TABLE if not exists accident (
 CREATE TABLE if not exists accident_rule (
   rule_id int references rule(id),
   accident_id int references accident(id)
+
 );
 
 

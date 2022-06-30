@@ -14,10 +14,6 @@ public class AccidentJdbcService {
         this.accidentJdbc = accidentJdbc;
     }
 
-    public Accident save(Accident accident) {
-        return accidentJdbc.save(accident);
-    }
-
     public List<Accident> getAll() {
         return accidentJdbc.getAll();
     }

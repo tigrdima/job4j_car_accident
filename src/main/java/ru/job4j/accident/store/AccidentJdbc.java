@@ -18,7 +18,7 @@ public class AccidentJdbc {
         this.jdbc = jdbc;
     }
 
-    public List<Rule> get(int id) {
+    private List<Rule> get(int id) {
         return jdbc.query("select r.id as id_rule, r.name as name_rule from accident"
                         + "join accident_rule ar on ar.accident_id = accident.id"
                         + "join rule r on ar_id = r.id"
