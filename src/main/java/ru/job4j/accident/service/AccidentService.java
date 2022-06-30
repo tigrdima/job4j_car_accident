@@ -46,7 +46,7 @@ public class AccidentService {
         return accidentMemStore.findByIdRule(id);
     }
 
-    public Set<Rule> getAllRules() {
+    public Collection<Rule> getAllRules() {
         return accidentMemStore.getAllRules();
     }
 }
