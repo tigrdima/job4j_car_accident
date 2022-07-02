@@ -6,23 +6,23 @@ import org.springframework.web.bind.annotation.*;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
 import ru.job4j.accident.model.Rule;
-import ru.job4j.accident.service.AccidentService;
+import ru.job4j.accident.service.AccidentJdbcService;
 
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class AccidentControl {
-    private final AccidentService accidentService;
+    private final AccidentJdbcService accidentJdbcService;
 
-    public AccidentControl(AccidentService accidentService) {
-        this.accidentService = accidentService;
+    public AccidentControl(AccidentJdbcService accidentJdbcService) {
+        this.accidentJdbcService = accidentJdbcService;
     }
 
     @GetMapping("/create")
     public String create(Model model, @ModelAttribute AccidentType accidentType, @ModelAttribute Rule rule) {
         model.addAttribute("accident", new Accident());
-        model.addAttribute("accidentTypes", accidentService.getAllTypes());
-        model.addAttribute("rules", accidentService.getAllRules());
+        model.addAttribute("accidentTypes", accidentJdbcService.getAllTypes());
+        model.addAttribute("rules", accidentJdbcService.getAllRules());
         return "accident/create";
     }
 
@@ -30,7 +30,7 @@ public class AccidentControl {
     public String save(@ModelAttribute Accident accident, @RequestParam("accidentType.id") int accidentTypeId,
                        HttpServletRequest req) {
         String[] ruleIds = req.getParameterValues("ruleIds");
-        accidentService.save(accident, accidentTypeId, ruleIds);
+        accidentJdbcService.save(accident, accidentTypeId, ruleIds);
 
         return "redirect:/";
     }
@@ -38,9 +38,9 @@ public class AccidentControl {
     @GetMapping("/formUpdate")
     public String formUpdate(Model model, @RequestParam("id") int id, @ModelAttribute AccidentType accidentType,
                              @ModelAttribute Rule rule) {
-        model.addAttribute("accident", accidentService.findById(id));
-        model.addAttribute("accidentTypes", accidentService.getAllTypes());
-        model.addAttribute("rules", accidentService.getAllRules());
+        model.addAttribute("accident", accidentJdbcService.findById(id));
+        model.addAttribute("accidentTypes", accidentJdbcService.getAllTypes());
+        model.addAttribute("rules", accidentJdbcService.getAllRules());
         return "accident/updateAccident";
     }
 
@@ -48,7 +48,7 @@ public class AccidentControl {
     public String update(@ModelAttribute Accident accident, @RequestParam("accidentType.id") int accidentTypeId,
                          HttpServletRequest req) {
         String[] ruleIds = req.getParameterValues("ruleIds");
-        accidentService.update(accident, accidentTypeId, ruleIds);
+        accidentJdbcService.update(accident, accidentTypeId, ruleIds);
         return "redirect:/";
     }
 
