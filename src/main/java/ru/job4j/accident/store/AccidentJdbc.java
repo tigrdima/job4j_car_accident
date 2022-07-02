@@ -13,7 +13,7 @@ import ru.job4j.accident.model.Rule;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.*;
-
+/**
 @Repository
 public class AccidentJdbc {
     private final JdbcTemplate jdbc;
@@ -87,4 +87,4 @@ public class AccidentJdbc {
                     Integer.parseInt(ruleId), id);
         }
     }
-}
+}*/

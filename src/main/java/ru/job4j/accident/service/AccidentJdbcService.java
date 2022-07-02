@@ -4,13 +4,13 @@ import org.springframework.stereotype.Service;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
 import ru.job4j.accident.model.Rule;
-import ru.job4j.accident.store.AccidentJdbc;
+
 
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
+/**
 @Service
 public class AccidentJdbcService {
     private final AccidentJdbc accidentJdbc;
@@ -42,4 +42,4 @@ public class AccidentJdbcService {
     public void update(Accident accident, int accidentTypeId, String[] ruleIds) {
         accidentJdbc.update(accident, accidentTypeId, ruleIds);
     }
-}
+} */
