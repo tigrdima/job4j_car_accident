@@ -40,6 +40,10 @@ public class HbmConfig {
         Properties cfg = new Properties();
         cfg.setProperty("hibernate.dialect", dialect);
         cfg.setProperty("hibernate.hbm2ddl.auto", "update");
+        cfg.setProperty("hibernate.connection.pool_size", "10");
+        cfg.setProperty("hibernate.current_session_context_class", "thread");
+        cfg.setProperty("format_sql", "true");
+        cfg.setProperty("use_sql_comments", "true");
         sessionFactory.setHibernateProperties(cfg);
         return sessionFactory;
     }

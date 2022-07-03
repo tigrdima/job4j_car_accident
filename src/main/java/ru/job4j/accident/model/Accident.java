@@ -12,8 +12,8 @@ public class Accident {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    private String text;
     private String address;
+    private String text;
 
     @ManyToOne
     @JoinColumn(name = "accident_type_id")

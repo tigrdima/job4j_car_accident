@@ -25,8 +25,11 @@
                 Редактирование нарушения
             </div>
             <div class="card-body">
-                <form action='<c:url value="/update?id=${accident.id}"/>' method='POST'>
+                <form action='<c:url value="/update"/>' method='POST'>
                     <table>
+                        <tr>
+                            <td><input type='hidden' name='id' value="${accident.id}"></td>
+                        </tr>
                         <tr>
                             <td>
                                 <h5><label>Название нарушения:</label></h5>
@@ -43,7 +46,7 @@
                                 <h5><label>Тип нарушения:</label></h5>
                             </td>
                        <tr> <td>
-                        <select name="accidentType.id">
+                        <select required name="accidentType.id">
                             <c:forEach var="accidentType" items="${accidentTypes}" >
                                 <option value="${accidentType.id}">${accidentType.name}</option>
                             </c:forEach>
@@ -55,7 +58,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <select name="ruleIds" multiple>
+                                <select required name="ruleIds" multiple>
                                     <c:forEach var="rule" items="${rules}">
                                         <option value="${rule.id}">${rule.name}</option>
                                     </c:forEach>
@@ -77,7 +80,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><textarea name="text" rows="5" cols="80">${accident.text}</textarea>
+                            <td><textarea required name="text" rows="5" cols="80">${accident.text}</textarea>
                             </td>
                         </tr>
                         <tr>

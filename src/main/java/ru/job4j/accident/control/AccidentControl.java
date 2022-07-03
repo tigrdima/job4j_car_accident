@@ -30,13 +30,11 @@ public class AccidentControl {
     @PostMapping("/save")
     public String save(@ModelAttribute Accident accident, @RequestParam("accidentType.id") int accidentTypeId,
                        HttpServletRequest req) {
-        String[] ruleIds = req.getParameterValues("ruleIds");
-        accidentsService.save(accident, accidentTypeId, ruleIds);
-
+        saveOrUpdateAccident(accident, accidentTypeId, req);
         return "redirect:/";
     }
 
-  /**  @GetMapping("/formUpdate")
+   @GetMapping("/formUpdate")
     public String formUpdate(Model model, @RequestParam("id") int id, @ModelAttribute AccidentType accidentType,
                              @ModelAttribute Rule rule) {
         model.addAttribute("accident", accidentsService.findById(id));
@@ -48,9 +46,13 @@ public class AccidentControl {
     @PostMapping("/update")
     public String update(@ModelAttribute Accident accident, @RequestParam("accidentType.id") int accidentTypeId,
                          HttpServletRequest req) {
-        String[] ruleIds = req.getParameterValues("ruleIds");
-        accidentsService.update(accident, accidentTypeId, ruleIds);
+        saveOrUpdateAccident(accident, accidentTypeId, req);
         return "redirect:/";
-    }*/
+    }
 
+    private void saveOrUpdateAccident(@ModelAttribute Accident accident, @RequestParam("accidentType.id") int accidentTypeId,
+                                      HttpServletRequest req) {
+        String[] ruleIds = req.getParameterValues("ruleIds");
+        accidentsService.saveOrUpdateAccident(accident, accidentTypeId, ruleIds);
+    }
 }

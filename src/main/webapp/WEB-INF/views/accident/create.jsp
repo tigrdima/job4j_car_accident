@@ -29,11 +29,11 @@
                     <table>
                         <tr>
                             <td>Название нарушения:</td>
-                            <td><input type="text" name="name"></td>
+                            <input required type="text" name="name" placeholder="Новое нарушение"></td>
                         </tr>
                         <tr>
                             <td>Тип нарушения:</td>
-                            <td><select name="accidentType.id">
+                            <td><select required name="accidentType.id">
                                 <c:forEach var="accidentType" items="${accidentTypes}">
                                     <option value="${accidentType.id}">${accidentType.name}</option>
                                 </c:forEach>
@@ -43,7 +43,7 @@
                         <tr>
                             <td>Статьи нарушения:</td>
                             <td>
-                                <select name="ruleIds" multiple>
+                                <select required name="ruleIds" multiple>
                                     <c:forEach var="rule" items="${rules}">
                                         <option value="${rule.id}">${rule.name}</option>
                                     </c:forEach>
@@ -51,11 +51,11 @@
                         </tr>
                         <tr>
                             <td>Описание нарушения:</td>
-                            <td><input type="text" name="text"></td>
+                            <td><textarea required type="text" name="text"></textarea></td>
                         </tr>
                         <tr>
                             <td>Адресс нарушения:</td>
-                            <td><input type="text" name="address"></td>
+                            <td><textarea required type="text" name="address"></textarea></td>
                         </tr>
                         <tr>
                             <td colspan='2'><input name="submit" type="submit" value="Сохранить"/></td>

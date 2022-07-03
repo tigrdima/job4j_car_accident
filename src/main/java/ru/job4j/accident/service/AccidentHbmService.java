@@ -20,8 +20,8 @@ public class AccidentHbmService {
         return accidentHbm.getAll();
     }
 
-    public void save(Accident accident, int accidentTypeId, String[] ruleIds) {
-        accidentHbm.save(accident, accidentTypeId, ruleIds);
+    public void saveOrUpdateAccident(Accident accident, int accidentTypeId, String[] ruleIds) {
+        accidentHbm.saveOrUpdateAccident(accident, accidentTypeId, ruleIds);
     }
 
     public List<AccidentType> getAllTypes() {
@@ -30,5 +30,9 @@ public class AccidentHbmService {
 
     public List<Rule> getAllRules() {
         return accidentHbm.getAllRules();
+    }
+
+    public Accident findById(int id) {
+        return accidentHbm.findAccidentById(id);
     }
 }
