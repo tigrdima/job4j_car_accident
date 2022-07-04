@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <body>
-<form name='login' action="<c:url value='/regUser'/>" method='POST'>
+<form name='login' action="<c:url value='/reg'/>" method='POST'>
     <table>
         <tr>
             <td>UserName:</td>

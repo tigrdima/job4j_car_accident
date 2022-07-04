@@ -32,6 +32,7 @@
                 <a class="nav-item nav-link " href='<c:url value="/create"/>'>Добавить нарушение</a>
             </div>
             <div> Пользователь : ${user.username}</div>
+            <div><a href='<c:url value="/logout"/>'>Выйти</a></div>
         </div>
     </nav>
     <div class="row">
