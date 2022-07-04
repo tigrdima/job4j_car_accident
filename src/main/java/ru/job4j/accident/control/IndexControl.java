@@ -26,4 +26,5 @@ public class IndexControl {
         model.addAttribute("accidents", accidentList);
         return "index";
     }
+
 }

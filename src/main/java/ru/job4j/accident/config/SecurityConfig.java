@@ -58,17 +58,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf()
                 .disable();
     }
-
-//    @Bean
-//    public DataSource dsSc(@Value("${jdbc.driver}") String driver,
-//                         @Value("${jdbc.url}") String url,
-//                         @Value("${jdbc.username}") String username,
-//                         @Value("${jdbc.password}") String password) {
-//        BasicDataSource ds = new BasicDataSource();
-//        ds.setDriverClassName(driver);
-//        ds.setUrl(url);
-//        ds.setUsername(username);
-//        ds.setPassword(password);
-//        return ds;
-//    }
 }
