@@ -3,34 +3,32 @@ package ru.job4j.accident.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import javax.sql.DataSource;
+
 @Configuration
+@Import(DataConfig.class)
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
     @Autowired
-    PasswordEncoder passwordEncoder;
+    DataSource ds;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .passwordEncoder(passwordEncoder)
-                .withUser("user")
-                .password(passwordEncoder.encode("123456"))
-                .roles("USER")
-                .and()
-                .withUser("admin")
-                .password(passwordEncoder.encode("123456"))
-                .roles("USER", "ADMIN")
-                .and()
-                .withUser("dima")
-                .password(passwordEncoder.encode("111"))
-                .roles("ADMIN");
+        auth.jdbcAuthentication()
+                .dataSource(ds)
+                .withUser(User.withUsername("user")
+                .password(passwordEncoder().encode("123456"))
+                .roles("USER"));
     }
 
     @Bean
@@ -60,4 +58,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf()
                 .disable();
     }
+
+//    @Bean
+//    public DataSource dsSc(@Value("${jdbc.driver}") String driver,
+//                         @Value("${jdbc.url}") String url,
+//                         @Value("${jdbc.username}") String username,
+//                         @Value("${jdbc.password}") String password) {
+//        BasicDataSource ds = new BasicDataSource();
+//        ds.setDriverClassName(driver);
+//        ds.setUrl(url);
+//        ds.setUsername(username);
+//        ds.setPassword(password);
+//        return ds;
+//    }
 }
