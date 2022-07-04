@@ -8,6 +8,7 @@ import ru.job4j.accident.model.Rule;
 
 import java.util.List;
 
+/**
 @Repository
 public class AccidentHbm implements SessionHbm {
     private final SessionFactory sf;
@@ -55,4 +56,4 @@ public class AccidentHbm implements SessionHbm {
                 .setParameter("aId", id)
                 .uniqueResult(), sf);
     }
-}
+}*/

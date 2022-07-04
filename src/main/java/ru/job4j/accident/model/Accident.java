@@ -19,7 +19,7 @@ public class Accident {
     @JoinColumn(name = "accident_type_id")
     private AccidentType accidentType;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     private Set<Rule> rules = new HashSet<>();
 
     public Accident() {
